@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Smart Mirror-Weather</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://www.w3schools.com/lib/w3.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+	<div w3-include-html="header.html"></div> 
+	<div class="topnav" id="myTopnav">
+  			<a href="index.html">Home</a>
+  			<a href="colors.html">Colors</a>
+  			<a href="text.html">Text</a>
+  			<a href="images.html">Image</a>
+  			<a href="weather.html" class="active">Weather</a>
+  			<a href="clock.html">Clock</a>
+ 			<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
+	<div id="weather">
+		No te olvides de mirar el tiempo antes de salir de casa.
+		<input type="input" name="ciudad" id = "city">
+		<input type="button" name="search" onclick="api(document.getElementById('city').value)">
+		<p id="tiempo"></p>
+	</div>
+	<div w3-include-html="footer.html"></div> 
+	<script>
+		w3.includeHTML();
+	</script> 
+	<script type="text/javascript">
+		/* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
+		function myFunction() {
+		    var x = document.getElementById("myTopnav");
+		    if (x.className === "topnav") {
+		        x.className += " responsive";
+		    } else {
+		        x.className = "topnav";
+		    }
+		}
+		function api($city){
+			var prueba = "http://api.openweathermap.org/data/2.5/weather?q="+city.value+"&lang=es&units=metric&appid=4405a11655d9f6bd6bf98c4dcb528180"
+			$.getJSON(prueba, function(result){
+	            $.each(result, function(i, field){
+	                $("p").append(field + " ");
+	            });
+        	});
+		} 
+	</script>
+</body>
+</html>
