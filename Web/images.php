@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="https://www.w3schools.com/lib/w3.js"></script>
 	</head>
-	<?
+	<?php
 	if ($_POST['subirBtn']) {
 		if ($_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png") {
 			if ($_FILES['imagen']['size'] <= 2000000) {
@@ -15,7 +15,7 @@
 			$nombre .= $_FILES['imagen']['name'];
 			copy($_FILES['imagen']['tmp_name'], $nombre);
 			}
-			else echo '<script type="text/javascript">alert("Error, Archivo muy grande.");</script>';
+			else {echo '<script type="text/javascript">alert("Error, Archivo muy grande.");</script>';}
 		}
 		else{
 		echo '<script type="text/javascript">alert("Error, formato no valido");</script>';  
